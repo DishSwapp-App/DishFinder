@@ -10,11 +10,15 @@
   </head>
   <body>
     <h1>DishFinder</h1>
-    <form method="POST" action="/">
-      <label for="url">Enter recipe URL:</label>
-      <input type="text" id="url" name="url" required />
-      <button type="submit">Get Recipe</button>
-    </form>
+
+    <div class="container">
+      <form method="POST" action="/">
+        <label for="url">Enter recipe URL:</label>
+        <br />
+        <input type="text" id="url" name="url" required />
+        <button type="submit" class="btn btn-primary">Get Recipe</button>
+      </form>
+    </div>
 
     <br />
     <br />
@@ -22,7 +26,15 @@
     <br />
     <br />
     <br />
-    {% if ingredients and directions %}
+
+    {% if error_message %}
+    <div class="error-message">{{ error_message }} Try a different webiste</div>
+    {% endif %} {% if ingredients and directions %}
+
+    <div class="container">
+      <h2>{{ title }}</h2>
+    </div>
+
     <div class="container">
       <div class="row">
         <div class="col-md-6">

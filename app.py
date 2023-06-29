@@ -11,11 +11,15 @@ freezer = Freezer(app)
 def index():
     if request.method == 'POST':
         url = request.form['url']
-        scraper = scrape_me(url)
-        ingredients = scraper.ingredients()
-        directions = scraper.instructions()
-
-        return render_template('index.html', ingredients=ingredients, directions=directions)
+        try:
+            scraper = scrape_me(url)
+            ingredients = scraper.ingredients()
+            directions = scraper.instructions()
+            title = scraper.title()
+            return render_template('index.html', ingredients=ingredients, directions=directions, title=title)
+        except Exception as e:
+            error_message = f"Error: {str(e)}"
+            return render_template('index.html', error_message=error_message)
 
     return render_template('index.html')
 
